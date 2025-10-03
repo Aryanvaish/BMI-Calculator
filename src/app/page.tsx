@@ -7,6 +7,10 @@ import InformationCard from "../../components/layouts/informationCard";
 import History from "../../components/layouts/historyCard";
 import Footer from "../../components/layouts/footer";
 
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
+
 type User = {
   userName: string;
   userGender: string;
@@ -81,6 +85,8 @@ export default function Home() {
             <History />
           </div>
           <Footer />
+          <Analytics />
+          <SpeedInsights />
         </div>
       </div>
     </div>
