@@ -15,8 +15,11 @@ type HistorProps = {
 export default function History({ itemsToShow }: HistorProps) {
 
   const [users, setUsers] = useState<User[]>(() => {
-    const rawData = localStorage.getItem("UserData");
-    return rawData ? JSON.parse(rawData) : [];
+    if (typeof window !== "undefined") {
+      const rawData = localStorage.getItem("UserData");
+      return rawData ? JSON.parse(rawData) : [];
+    }
+    return [];
   });
 
   useEffect(() => {
