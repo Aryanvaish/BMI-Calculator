@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🧮 BMI Calculator
 
-## Getting Started
+A simple and interactive BMI (Body Mass Index) Calculator built with React.
+Track your health easily by calculating your BMI and maintaining a history of results stored in the browser’s localStorage.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+✅ Calculate BMI instantly by entering height & weight
+✅ Supports different genders
+✅ Stores history in localStorage
+✅ Shows BMI category (Underweight, Normal, Overweight, Obese)
+✅ Clean & responsive UI
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+📖 Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Enter your weight (kg) and height (cm)
+2. Select gender (optional)
+3. Click Calculate
+4. Your BMI and category will be displayed
+5. History of calculations will be stored automatically
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+🧪 Example BMI Categories
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| BMI Range | Category      |
+| --------- | ------------- |
+| < 18.5    | Underweight   |
+| 18.5–24.9 | Normal Weight |
+| 25–29.9   | Overweight    |
+| ≥ 30      | Obese         |
