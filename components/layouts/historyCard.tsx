@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 type User = {
@@ -10,35 +12,39 @@ type User = {
 
 type HistorProps = {
   itemsToShow?: number;
-}
+};
 
 export default function History({ itemsToShow }: HistorProps) {
-
-  const [users, setUsers] = useState<User[]>(() => {
-    if (typeof window !== "undefined") {
-      const rawData = localStorage.getItem("UserData");
-      return rawData ? JSON.parse(rawData) : [];
-    }
-    return [];
-  });
+  const [users, setUsers] = useState<User[]>([]);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    const rawData = localStorage.getItem("UserData");
+    setUsers(rawData ? JSON.parse(rawData) : []);
+
     const loadData = () => {
-      const rawData = localStorage.getItem("UserData");
-      setUsers(rawData ? JSON.parse(rawData) : []);
+      const data = localStorage.getItem("UserData");
+      setUsers(data ? JSON.parse(data) : []);
     };
 
-    loadData();
-
-    const handleUpdate = () => loadData();
-    window.addEventListener("userDataUpdated", handleUpdate);
-    window.addEventListener("storage", handleUpdate);
+    window.addEventListener("userDataUpdated", loadData);
+    window.addEventListener("storage", loadData);
 
     return () => {
-      window.removeEventListener("userDataUpdated", handleUpdate);
-      window.removeEventListener("storage", handleUpdate);
+      window.removeEventListener("userDataUpdated", loadData);
+      window.removeEventListener("storage", loadData);
     };
   }, []);
+
+  const handleDelete = (index: number) => {
+    const updated = [...users];
+    updated.splice(index, 1);
+    setUsers(updated);
+    localStorage.setItem("UserData", JSON.stringify(updated));
+  };
+
+  if (!mounted) return null; 
 
   const displayedUsers = itemsToShow ? users.slice(0, itemsToShow) : users;
 
@@ -52,26 +58,25 @@ export default function History({ itemsToShow }: HistorProps) {
       </p>
       <div className="px-4 sm:px-5 py-4 flex flex-col gap-3">
         {displayedUsers.length === 0 ? (
-          <p className="text-gray-400 italic text-sm sm:text-base">
-            No records found
-          </p>
+          <p className="text-gray-400 italic text-sm sm:text-base">No records found</p>
         ) : (
           displayedUsers.map((item, index) => (
-            <div key={index} className="flex flex-row justify-between items-center bg-[#ffffff14] px-3 sm:px-4 py-2.5 rounded-[6px] text-white font-medium" >
+            <div
+              key={index}
+              className="group relative flex flex-row justify-between items-center bg-[#ffffff14] px-3 sm:px-4 py-2.5 rounded-[6px] text-white font-medium overflow-hidden transition-all"
+            >
               <div>
                 <p className="capitalize text-base mb-1 sm:text-lg">{item.userName}</p>
                 <p className="text-xs capitalize sm:text-sm text-gray-300">
                   {item.userGender} • {new Date(item.time).toLocaleDateString()}
                 </p>
               </div>
-              <div className="text-blue-400 font-bold text-sm sm:text-lg">
-                {item.bmi}
-              </div>
+              <div className="text-blue-400 font-bold text-sm pr-5 sm:text-lg">{item.bmi}</div>
+              <div onClick={() => handleDelete(index)} className="absolute -top-0.5 right-2 text-gray-400 hover:text-gray-200 cursor-pointer font-bold text-lg transition-opacity duration-200 opacity-100 sm:opacity-0 group-hover:opacity-100" > × </div>
             </div>
           ))
         )}
       </div>
     </div>
   );
-
 }

@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <div className="font-sans">
       <div className="max-w-[1200px] w-full flex flex-col items-center m-auto px-4">
-        <h1 className="text-3xl sm:text-5xl lg:leading-15 leading-10 font-semibold mt-8 lg:mt-12 mb-5 text-center">
+        <h1 className="text-3xl sm:text-5xl lg:leading-15 leading-10 font-bold mt-8 lg:mt-12 mb-4 text-center">
           Track Your Health With an Easy BMI Calculator
         </h1>
         <h2 className="text-sm sm:text-lg lg:leading-8 leading-6 font-medium text-center px-4 sm:px-20 mb-6 lg:mb-10">
@@ -71,7 +71,7 @@ export default function Home() {
           not the final answer. For a complete picture of your health, always pair
           your BMI with professional medical advice.
         </h2>
-        <div className="w-full flex flex-col lg:flex-row flex-wrap items-center gap-5">
+        <div className="w-full flex flex-col lg:flex-row flex-wrap items-center lg:gap-6 gap-2.5 ">
           <div className="w-full flex flex-col lg:flex-row items-center gap-5">
             <BmiCard setBmi={setBmi} setUsername={setUsername} setUserGender={setUserGender} />
             <InformationCard />
