@@ -15,10 +15,10 @@
 
 return (
   <div className="w-full rounded-xl bg-white/5 backdrop-blur-2xl shadow-lg border border-[hsl(0,0%,15%)]">
-    <h2 className="text-2xl font-semibold border-b-1 px-5 py-5 border-[hsl(0,0%,20%)]">BMI Categories</h2>
+    <h2 className="text-2xl font-semibold border-b px-5 py-5 border-[hsl(0,0%,20%)]">BMI Categories</h2>
     <ul className="px-5">
       {BMICategories.map((item: CategoriesType, index: number) => (
-        <li key={index} className="flex py-5 border-b-1 border-[hsl(0,0%,15%)] first:font-bold last:border-0 flex-row gap-2 md:gap-0" >
+        <li key={index} className="flex py-5 border-b border-[hsl(0,0%,15%)] first:font-bold last:border-0 flex-row gap-2 md:gap-0" >
           <span className="w-full md:w-1/2">{item.range}</span>
           <span className="w-full md:w-1/2">{item.label}</span>
         </li>
